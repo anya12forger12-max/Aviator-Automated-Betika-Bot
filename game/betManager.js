@@ -43,7 +43,7 @@ class BetManager {
             }, betAmount, this.config.SELECTORS.GAME.BET_INPUT);
 
             // Wait for input to register
-            await page.waitForTimeout(200);
+            await new Promise(r => setTimeout(r, 200));
 
             // Click bet button
             const betPlaced = await frame.evaluate((selector) => {

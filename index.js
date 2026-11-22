@@ -79,7 +79,7 @@ async function navigateInitialPages(page) {
             await page.click(selector);
             logger.info(`Clicked ${name}`);
             // Add small delay between clicks
-            await page.waitForTimeout(1000);
+            await new Promise(r => setTimeout(r, 1000));
         } catch (error) {
             logger.error(`Failed to click ${name}: ${error.message}`);
             throw error;
