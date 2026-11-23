@@ -93,7 +93,9 @@ async function handleNewTab(target, browser, strategyConfig) {
         if (newPage) {
             try {
                 await newPage.waitForNavigation({ timeout: config.NAVIGATION.TIMEOUT });
-                logger.info(`Navigated to game page: ${await newPage.url()}`);
+                const landedUrl = new URL(await newPage.url());
+                // Log only origin + path: callback/session params must never be persisted.
+                logger.info(`Navigated to game page: ${landedUrl.origin}${landedUrl.pathname}`);
 
                 // Pass both page and config to GameMonitor constructor
                 const gameMonitor = new GameMonitor(newPage, config);
